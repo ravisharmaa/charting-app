@@ -20,16 +20,14 @@
 
 <script>
     import { GChart } from "vue-google-charts";
+    import axios from 'axios'
     export default {
         data() {
             return {
+                legends: [],
                 // Array will be automatically processed with visualization.arrayToDataTable function
                 chartData: [
-                    ["Year", "Sales", "Expenses", "Profit"],
-                    ["2014", 1000, 400, 200],
-                    ["2015", 1170, 460, 250],
-                    ["2016", 660, 1120, 300],
-                    ["2017", 1030, 540, 350]
+                    [this.legends]
                 ],
                 chartOptions: {
                     chart: {
@@ -38,6 +36,16 @@
                     }
                 }
             };
+        },
+
+        mounted() {
+            return axios.get('home').then(response=> {
+                this.legends = Object.keys(response.data[0]);
+                console.log(typeof this.legends)
+
+            }).catch(error => {
+                console.log(error);
+            })
         }
     }
 </script>

@@ -22,3 +22,13 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(App\Sale::class, function (Faker $faker) {
+    return [
+        'expenses'=>$faker->numberBetween(2000,4000),
+        'profit' => $faker->numberBetween(1000, 6000),
+        'sale_year' => $faker->year('now')
+    ];
+});
+
